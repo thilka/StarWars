@@ -3,32 +3,58 @@ import React, {Component} from 'react'
 import {
     StyleSheet,
     View,
-    Text
+    Text,
+    FlatList
 } from 'react-native'
 
 import Container from './Container'
 
 export default class People extends Component {
 
-  static navigationOptions = {
-    headerTitle: 'People',
-    headerStyle: {
-      borderBottomWidth: 1,
-      borderBottomColor: '#ffe81f',
-      backgroundColor: 'black'
-    },
-    headerTitleStyle: {
-      color: '#ffe81f',
-    },
-    pressColorAndroid: 'white'
-  }
+    static navigationOptions = {
+        headerTitle: 'People',
+        headerStyle: {
+            borderBottomWidth: 1,
+            borderBottomColor: '#ffe81f',
+            backgroundColor: 'black'
+        },
+        headerTitleStyle: {
+            color: '#ffe81f',
+        },
+        pressColorAndroid: 'white'
+    }
+    state = {
+        data: [],
+        loading: true,
+        modalVisible: false,
+        gender: 'all',
+        pickerVisible: false
+    }
+
+    componentDidMount() {
+        fetch('https://swapi.co/api/people/')
+        .then(res => res.json())
+        .then(json => this.setState({ data:json.results, loading:false }))
+        .catch((err) => console.log('Error:', err))
+    }
+
+    renderItem = ({item}) => {
+        return (
+            <View>
+                <Text style={styles.text}>{item.name}</Text>
+            </View>
+        )
+    }
+
 
     render() {
+        let {data} = this.state
         return (
             <Container>
-                <View>
-                    <Text style={styles.text}>People!!!</Text>
-                </View>
+                <FlatList
+                    data={data}
+                    keyExtractor={(item) => item.name}
+                    renderItem={this.renderItem}/>
             </Container>
         )
     }
