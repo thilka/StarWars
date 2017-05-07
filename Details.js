@@ -19,6 +19,7 @@ export default class Details extends Component {
             borderBottomColor: '#ffe81f',
             backgroundColor: 'black'
         },
+        headerTintColor: '#ffe81f',
         headerTitleStyle: {
             color: '#ffe81f',
         },
