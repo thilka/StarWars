@@ -14,11 +14,11 @@ import ListItem from './components/ListItem'
 
 const links = [
     {name: 'People',    url: 'https://swapi.co/api/people/' },
-    {name: 'Films'/*,     url: 'https://swapi.co/api/films/' */},
-    {name: 'StarShips'},
-    {name: 'Vehicles'},
-    {name: 'Species'},
-    {name: 'Planets'},
+    {name: 'Films',     url: 'https://swapi.co/api/films/' },
+    {name: 'StarShips', url: 'https://swapi.co/api/starships/' },
+    {name: 'Vehicles',  url: 'https://swapi.co/api/vehicles/' },
+    {name: 'Species',   url: 'https://swapi.co/api/species/' },
+    {name: 'Planets',   url: 'https://swapi.co/api/planets/'},
 ]
 
 export default class BasicApp extends Component {
@@ -57,18 +57,14 @@ export default class BasicApp extends Component {
 // Navigation
 
 const Navigation = StackNavigator({
-  Home: {
-    screen: BasicApp,
-  },
-  People: {
-    screen: People,
-  },
-  /*Films: {
-    screen: People,
-  },*/
-  Details: {
-      screen: Details,
-  }
+  Home: { screen: BasicApp, },
+  People: { screen: People, },
+  Films: { screen: People, },
+  StarShips: { screen: People, },
+  Vehicles: { screen: People, },
+  Species: { screen: People, },
+  Planets: { screen: People, },
+  Details: { screen: Details,}
 })
 
 AppRegistry.registerComponent('StarWars', () => Navigation);

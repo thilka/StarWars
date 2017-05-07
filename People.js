@@ -10,8 +10,8 @@ import ListItem from './components/ListItem'
 
 export default class People extends Component {
 
-    static navigationOptions = {
-        headerTitle: 'People',
+    static navigationOptions = ({navigation}) => ({
+        headerTitle: navigation.state.routeName,
         headerStyle: {
             borderBottomWidth: 1,
             borderBottomColor: '#ffe81f',
@@ -22,7 +22,7 @@ export default class People extends Component {
             color: '#ffe81f',
         },
         pressColorAndroid: 'white'
-    }
+    })
 
     state = {
         data: [],

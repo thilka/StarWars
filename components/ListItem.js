@@ -9,9 +9,10 @@ import {
 export default class ListItem extends Component {
   render() {
     const {onPress, item, index} = this.props;
+    displayTitle = item.name === undefined ? item.title: item.name
     return (
         <TouchableHighlight style={[ styles.item, { borderTopWidth: index === 0 ? 1 : null} ]} onPress={onPress}>
-          <Text style={styles.text}>{item.name}</Text>
+          <Text style={styles.text}>{displayTitle}</Text>
         </TouchableHighlight>
     )
   }
