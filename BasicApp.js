@@ -13,6 +13,7 @@ import {StackNavigator} from 'react-navigation'
 
 import Container from './Container'
 import People from './People'
+import Details from './Details'
 
 const links = [
     {title: 'People'},
@@ -81,6 +82,9 @@ const Navigation = StackNavigator({
   },
   People: {
     screen: People,
+  },
+  Details: {
+      screen: Details,
   }
 })
 

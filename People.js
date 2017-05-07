@@ -5,7 +5,8 @@ import {
     View,
     Text,
     FlatList,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableHighlight
 } from 'react-native'
 
 import Container from './Container'
@@ -24,7 +25,7 @@ export default class People extends Component {
         },
         pressColorAndroid: 'white'
     }
-    
+
     state = {
         data: [],
         loading: true,
@@ -40,11 +41,20 @@ export default class People extends Component {
         .catch((err) => console.log('Error:', err))
     }
 
+    loadDetails = (item) => {
+        const { navigate } = this.props.navigation
+        navigate('Details', {item: item})
+    }
+
+
     renderItem = ({item}) => {
         return (
-            <View>
+            <TouchableHighlight
+              onPress={() => this.loadDetails(item)}
+              style={styles.item}
+            >
                 <Text style={styles.text}>{item.name}</Text>
-            </View>
+            </TouchableHighlight>
         )
     }
 
