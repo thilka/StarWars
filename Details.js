@@ -9,22 +9,11 @@ import {
 } from 'react-native'
 
 import Container from './Container'
+import NavigationDefaults from './NavigationDefaults'
 
 export default class Details extends Component {
     
-    static navigationOptions = ({navigation}) => ({
-        headerTitle: navigation.state.params.item.name,
-        headerStyle: {
-            borderBottomWidth: 1,
-            borderBottomColor: '#ffe81f',
-            backgroundColor: 'black'
-        },
-        headerTintColor: '#ffe81f',
-        headerTitleStyle: {
-            color: '#ffe81f',
-        },
-        pressColorAndroid: 'white'
-    });
+    static navigationOptions = NavigationDefaults
 
     render() {
         const { item } = this.props.navigation.state.params
