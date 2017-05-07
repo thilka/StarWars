@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View, 
-  TouchableHighlight,
   FlatList,
   Image
 } from 'react-native';
@@ -14,14 +10,15 @@ import {StackNavigator} from 'react-navigation'
 import Container from './Container'
 import People from './People'
 import Details from './Details'
+import ListItem from './components/ListItem'
 
 const links = [
-    {title: 'People'},
-    {title: 'Films'},
-    {title: 'StarShips'},
-    {title: 'Vehicles'},
-    {title: 'Species'},
-    {title: 'Planets'},
+    {name: 'People'},
+    {name: 'Films'},
+    {name: 'StarShips'},
+    {name: 'Vehicles'},
+    {name: 'Species'},
+    {name: 'Planets'},
 ]
 
 export default class BasicApp extends Component {
@@ -32,18 +29,14 @@ export default class BasicApp extends Component {
     headerAlignment: 'center'
   }
 
-  navigate = (item) => {
+  loadItem = (item) => {
     const { navigate } = this.props.navigation
-    navigate(item.title)
+    navigate(item.name)
   }
 
   renderItem = ({item, index}) => {
     return (
-      <TouchableHighlight
-        onPress={() => this.navigate(item)}
-        style={[ styles.item, { borderTopWidth: index === 0 ? 1 : null} ]}>
-        <Text style={styles.text}>{item.title}</Text>
-      </TouchableHighlight>
+      <ListItem item={item} index={index} onPress={() => this.loadItem(item)}/>
     )
   }
 
@@ -52,26 +45,13 @@ export default class BasicApp extends Component {
       <Container>
         <FlatList
           data={links}
-          keyExtractor={(item) => item.title}
+          keyExtractor={(item) => item.name}
           renderItem={this.renderItem}/>
       </Container>
 
     );
   }
 }
-
-const styles = StyleSheet.create({
-  item: {
-    padding: 20,
-    justifyContent: 'center',
-    borderColor: 'rgba(255,232,31, .2)',
-    borderBottomWidth: 1
-  },
-  text: {
-    color: '#ffe81f',
-    fontSize: 18
-  }
-});
 
 /////////////////////////////////////////////////////////
 // Navigation

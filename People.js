@@ -1,15 +1,12 @@
 import React, {Component} from 'react'
 
 import {
-    StyleSheet,
-    View,
-    Text,
     FlatList,
     ActivityIndicator,
-    TouchableHighlight
 } from 'react-native'
 
 import Container from './Container'
+import ListItem from './components/ListItem'
 
 export default class People extends Component {
 
@@ -42,20 +39,16 @@ export default class People extends Component {
         .catch((err) => console.log('Error:', err))
     }
 
-    loadDetails = (item) => {
+    loadItem = (item) => {
         const { navigate } = this.props.navigation
         navigate('Details', {item: item})
     }
 
 
     renderItem = ({item}) => {
+        console.log(item)
         return (
-            <TouchableHighlight
-              onPress={() => this.loadDetails(item)}
-              style={styles.item}
-            >
-                <Text style={styles.text}>{item.name}</Text>
-            </TouchableHighlight>
+            <ListItem item={item} onPress={() => this.loadItem(item)}/>
         )
     }
 
@@ -76,16 +69,3 @@ export default class People extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-  item: {
-    padding: 20,
-    justifyContent: 'center',
-    borderColor: 'rgba(255,232,31, .2)',
-    borderBottomWidth: 1
-  },
-  text: {
-    color: '#ffe81f',
-    fontSize: 18
-  }
-});
