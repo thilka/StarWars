@@ -33,7 +33,8 @@ export default class People extends Component {
     }
 
     componentDidMount() {
-        fetch('https://swapi.co/api/people/')
+        const {url} = this.props.navigation.state.params
+        fetch(url)
         .then(res => res.json())
         .then(json => this.setState({ data:json.results, loading:false }))
         .catch((err) => console.log('Error:', err))

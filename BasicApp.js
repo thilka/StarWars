@@ -13,8 +13,8 @@ import Details from './Details'
 import ListItem from './components/ListItem'
 
 const links = [
-    {name: 'People'},
-    {name: 'Films'},
+    {name: 'People',    url: 'https://swapi.co/api/people/' },
+    {name: 'Films'/*,     url: 'https://swapi.co/api/films/' */},
     {name: 'StarShips'},
     {name: 'Vehicles'},
     {name: 'Species'},
@@ -31,7 +31,7 @@ export default class BasicApp extends Component {
 
   loadItem = (item) => {
     const { navigate } = this.props.navigation
-    navigate(item.name)
+    navigate(item.name, {url: item.url})
   }
 
   renderItem = ({item, index}) => {
@@ -63,6 +63,9 @@ const Navigation = StackNavigator({
   People: {
     screen: People,
   },
+  /*Films: {
+    screen: People,
+  },*/
   Details: {
       screen: Details,
   }
