@@ -8,7 +8,7 @@ import {
 import {StackNavigator} from 'react-navigation'
 
 import Container from './Container'
-import People from './People'
+import DetailsList from './DetailsList'
 import Details from './Details'
 import ListItem from './components/ListItem'
 
@@ -58,12 +58,12 @@ export default class BasicApp extends Component {
 
 const Navigation = StackNavigator({
   Home: { screen: BasicApp, },
-  People: { screen: People, },
-  Films: { screen: People, },
-  StarShips: { screen: People, },
-  Vehicles: { screen: People, },
-  Species: { screen: People, },
-  Planets: { screen: People, },
+  People: { screen: DetailsList, },
+  Films: { screen: DetailsList, },
+  StarShips: { screen: DetailsList, },
+  Vehicles: { screen: DetailsList, },
+  Species: { screen: DetailsList, },
+  Planets: { screen: DetailsList, },
   Details: { screen: Details,}
 })
 

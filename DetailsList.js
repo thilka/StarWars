@@ -8,7 +8,7 @@ import {
 import Container from './Container'
 import ListItem from './components/ListItem'
 
-export default class People extends Component {
+export default class DetailsList extends Component {
 
     static navigationOptions = ({navigation}) => ({
         headerTitle: navigation.state.routeName,
