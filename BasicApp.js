@@ -32,15 +32,15 @@ export default class BasicApp extends Component {
     headerAlignment: 'center'
   }
 
-  navigate = (link) => {
+  navigate = (item) => {
     const { navigate } = this.props.navigation
-    navigate(link)
+    navigate(item.title)
   }
 
   renderItem = ({item, index}) => {
     return (
       <TouchableHighlight
-        onPress={() => this.navigate(item.title)}
+        onPress={() => this.navigate(item)}
         style={[ styles.item, { borderTopWidth: index === 0 ? 1 : null} ]}>
         <Text style={styles.text}>{item.title}</Text>
       </TouchableHighlight>
