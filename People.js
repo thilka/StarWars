@@ -4,7 +4,8 @@ import {
     StyleSheet,
     View,
     Text,
-    FlatList
+    FlatList,
+    ActivityIndicator
 } from 'react-native'
 
 import Container from './Container'
@@ -23,6 +24,7 @@ export default class People extends Component {
         },
         pressColorAndroid: 'white'
     }
+    
     state = {
         data: [],
         loading: true,
@@ -46,16 +48,20 @@ export default class People extends Component {
         )
     }
 
-
     render() {
         let {data} = this.state
         return (
-            <Container>
+          <Container>
+            { this.state.loading ? 
+              <ActivityIndicator color='#ffe81f' size='large' /> :
+              (
                 <FlatList
-                    data={data}
-                    keyExtractor={(item) => item.name}
-                    renderItem={this.renderItem}/>
-            </Container>
+                  data={data}
+                  keyExtractor={(item) => item.name}
+                  renderItem={this.renderItem}/>
+              )
+            }
+          </Container>
         )
     }
 }
