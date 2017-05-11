@@ -68,7 +68,7 @@ export default class BasicApp extends Component {
 
 const Navigation = StackNavigator({
   Home: { screen: BasicApp, },
-  People: { screen: DetailsList, titleHandler: defaultTitleHandler },
+  People: { screen: DetailsList, },
   Films: { screen: DetailsList, },
   StarShips: { screen: DetailsList, },
   Vehicles: { screen: DetailsList, },
