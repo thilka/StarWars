@@ -35,9 +35,9 @@ export default class DetailsList extends Component {
     componentDidMount() {
         const {url} = this.props.navigation.state.params
         fetch(url)
-        .then(res => res.json())
-        .then(json => this.setState({ data:json.results, loading:false }))
-        .catch((err) => console.log('Error:', err))
+            .then(res => res.json())
+            .then(json => this.setState({ data:json.results, loading:false }))
+            .catch((err) => console.log('Error:', err))
     }
 
     loadItem = (item) => {
@@ -47,9 +47,8 @@ export default class DetailsList extends Component {
 
 
     renderItem = ({item}) => {
-        console.log(item)
         return (
-            <ListItem item={item} onPress={() => this.loadItem(item)}/>
+            <ListItem item={item} onPress={() => this.loadItem(item)} titleHandler={this.props.navigation.state.params.titleHandler}/>
         )
     }
 

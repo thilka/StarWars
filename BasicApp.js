@@ -12,14 +12,24 @@ import DetailsList from './DetailsList'
 import Details from './Details'
 import ListItem from './components/ListItem'
 
+
+const defaultTitleHandler = (item) => {
+  return item.title
+}
+
+const nameBasedTitleHandler = (item) => {
+  return item.name
+}
+
 const links = [
-    {name: 'People',    url: 'https://swapi.co/api/people/' },
-    {name: 'Films',     url: 'https://swapi.co/api/films/' },
-    {name: 'StarShips', url: 'https://swapi.co/api/starships/' },
-    {name: 'Vehicles',  url: 'https://swapi.co/api/vehicles/' },
-    {name: 'Species',   url: 'https://swapi.co/api/species/' },
-    {name: 'Planets',   url: 'https://swapi.co/api/planets/'},
+    {name: 'People',    url: 'https://swapi.co/api/people/',    titleHandler: nameBasedTitleHandler },
+    {name: 'Films',     url: 'https://swapi.co/api/films/',     titleHandler: defaultTitleHandler },
+    {name: 'StarShips', url: 'https://swapi.co/api/starships/', titleHandler: nameBasedTitleHandler },
+    {name: 'Vehicles',  url: 'https://swapi.co/api/vehicles/',  titleHandler: nameBasedTitleHandler },
+    {name: 'Species',   url: 'https://swapi.co/api/species/',   titleHandler: nameBasedTitleHandler },
+    {name: 'Planets',   url: 'https://swapi.co/api/planets/',   titleHandler: nameBasedTitleHandler },
 ]
+
 
 export default class BasicApp extends Component {
 
@@ -31,7 +41,7 @@ export default class BasicApp extends Component {
 
   loadItem = (item) => {
     const { navigate } = this.props.navigation
-    navigate(item.name, {url: item.url})
+    navigate(item.name, {url: item.url, titleHandler: item.titleHandler})
   }
 
   renderItem = ({item, index}) => {
@@ -58,7 +68,7 @@ export default class BasicApp extends Component {
 
 const Navigation = StackNavigator({
   Home: { screen: BasicApp, },
-  People: { screen: DetailsList, },
+  People: { screen: DetailsList, titleHandler: defaultTitleHandler },
   Films: { screen: DetailsList, },
   StarShips: { screen: DetailsList, },
   Vehicles: { screen: DetailsList, },

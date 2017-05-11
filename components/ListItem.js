@@ -8,8 +8,9 @@ import {
 
 export default class ListItem extends Component {
   render() {
-    const {onPress, item, index} = this.props;
-    displayTitle = item.name === undefined ? item.title: item.name
+    const {onPress, item, index, titleHandler} = this.props;
+    displayTitle = titleHandler === undefined ? item.name : titleHandler(item)
+    
     return (
         <TouchableHighlight style={[ styles.item, { borderTopWidth: index === 0 ? 1 : null} ]} onPress={onPress}>
           <Text style={styles.text}>{displayTitle}</Text>
