@@ -2,24 +2,23 @@ import React, {Component} from 'react'
 
 import {
     StyleSheet,
-    View,
     Text,
-    ActivityIndicator,
     TouchableHighlight
 } from 'react-native'
 
-import Container from './Container'
-import NavigationDefaults from './NavigationDefaults'
+import Container from '../../Container'
 
-export default class Details extends Component {
-    
-    static navigationOptions = NavigationDefaults
+export default class PeopleDetails extends Component {
 
-    render() {
-        const { item, detailsPage } = this.props.navigation.state.params
+  static navigationOptions = NavigationDefaults
+
+  render() {
+        const { item } = this.props.navigation.state.params
         return (
             <Container>
                <Text style={styles.text}>Name: {item.name}</Text>
+               <Text style={styles.text}>Height: {item.height}</Text>
+               <Text style={styles.text}>Gender: {item.gender}</Text>
             </Container>
         )
     }

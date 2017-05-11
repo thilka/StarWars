@@ -11,6 +11,8 @@ import Container from './Container'
 import DetailsList from './DetailsList'
 import Details from './Details'
 import ListItem from './components/ListItem'
+import PeopleDetails from './components/detailPages/PeopleDetails'
+import FilmDetails from './components/detailPages/FilmDetails'
 
 
 const defaultTitleHandler = (item) => {
@@ -22,12 +24,12 @@ const nameBasedTitleHandler = (item) => {
 }
 
 const links = [
-    {name: 'People',    url: 'https://swapi.co/api/people/',    titleHandler: nameBasedTitleHandler },
-    {name: 'Films',     url: 'https://swapi.co/api/films/',     titleHandler: defaultTitleHandler },
-    {name: 'StarShips', url: 'https://swapi.co/api/starships/', titleHandler: nameBasedTitleHandler },
-    {name: 'Vehicles',  url: 'https://swapi.co/api/vehicles/',  titleHandler: nameBasedTitleHandler },
-    {name: 'Species',   url: 'https://swapi.co/api/species/',   titleHandler: nameBasedTitleHandler },
-    {name: 'Planets',   url: 'https://swapi.co/api/planets/',   titleHandler: nameBasedTitleHandler },
+    {name: 'People',    url: 'https://swapi.co/api/people/',    titleHandler: nameBasedTitleHandler, detailsPage: 'PeopleDetails' },
+    {name: 'Films',     url: 'https://swapi.co/api/films/',     titleHandler: defaultTitleHandler,   detailsPage: 'FilmDetails' },
+    {name: 'StarShips', url: 'https://swapi.co/api/starships/', titleHandler: nameBasedTitleHandler, detailsPage: 'Details' },
+    {name: 'Vehicles',  url: 'https://swapi.co/api/vehicles/',  titleHandler: nameBasedTitleHandler, detailsPage: 'Details' },
+    {name: 'Species',   url: 'https://swapi.co/api/species/',   titleHandler: nameBasedTitleHandler, detailsPage: 'Details' },
+    {name: 'Planets',   url: 'https://swapi.co/api/planets/',   titleHandler: nameBasedTitleHandler, detailsPage: 'Details' },
 ]
 
 
@@ -41,7 +43,7 @@ export default class BasicApp extends Component {
 
   loadItem = (item) => {
     const { navigate } = this.props.navigation
-    navigate(item.name, {url: item.url, titleHandler: item.titleHandler})
+    navigate(item.name, {url: item.url, titleHandler: item.titleHandler, detailsPage: item.detailsPage})
   }
 
   renderItem = ({item, index}) => {
@@ -74,7 +76,9 @@ const Navigation = StackNavigator({
   Vehicles: { screen: DetailsList, },
   Species: { screen: DetailsList, },
   Planets: { screen: DetailsList, },
-  Details: { screen: Details,}
+  Details: { screen: Details,},
+  PeopleDetails: { screen: PeopleDetails,},
+  FilmDetails: { screen: FilmDetails,},
 })
 
 AppRegistry.registerComponent('StarWars', () => Navigation);

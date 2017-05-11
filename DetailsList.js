@@ -42,7 +42,8 @@ export default class DetailsList extends Component {
 
     loadItem = (item) => {
         const { navigate } = this.props.navigation
-        navigate('Details', {item: item})
+        navigate(this.props.navigation.state.params.detailsPage, {item: item})
+        
     }
 
 
